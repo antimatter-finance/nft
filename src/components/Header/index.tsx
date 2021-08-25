@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { CountUp } from 'use-count-up'
 import { useActiveWeb3React } from '../../hooks'
 import { useAggregateUniBalance } from '../../state/wallet/hooks'
-import { ButtonText, ExternalLink, TYPE } from '../../theme'
+import { ButtonText, ExternalLink, HideExtraSmall, TYPE } from '../../theme'
 import Row, { RowFixed, RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
 import usePrevious from '../../hooks/usePrevious'
@@ -382,12 +382,13 @@ export default function Header() {
         </HeaderLinks>
         <div style={{ paddingLeft: 8, display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '2rem' }}>
           <HeaderControls>
-            {account && (
-              <ButtonOutlinedPrimary width="120px" marginRight="16px" height={44} onClick={onCreateOrLogin}>
-                Create
-              </ButtonOutlinedPrimary>
-            )}
-
+            <HideExtraSmall>
+              {account && (
+                <ButtonOutlinedPrimary width="120px" marginRight="16px" height={44} onClick={onCreateOrLogin}>
+                  Create
+                </ButtonOutlinedPrimary>
+              )}
+            </HideExtraSmall>
             <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
               {!!account && aggregateBalance && (
                 <UNIWrapper>
