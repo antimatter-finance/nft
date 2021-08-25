@@ -71,9 +71,6 @@ const BodyWrapper = styled.div`
   ${({ theme }) => theme.mediaWidth.upToLarge`
   margin-bottom: ${({ theme }) => theme.headerHeight};
   `}
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-  margin-top: ${({ theme }) => theme.mobileHeaderHeight};
-  `};
 `
 
 // const MobileHint = styled.div`
