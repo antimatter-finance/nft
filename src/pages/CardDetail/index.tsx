@@ -19,7 +19,7 @@ import {
   useAssetsTokens,
   useNFTBalance,
   useNFTCreatorInfo,
-  // useNFTIndexInfo,
+  useNFTIndexInfo,
   useNFTTransactionRecords
 } from 'hooks/useIndexDetail'
 import NumericalInput from 'components/NumericalInput'
@@ -37,7 +37,7 @@ import { AssetsParameter } from '../../components/Creation'
 import { PriceState, useNFTETHPrice } from '../../data/Reserves'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import { useAmountOutMins, useIndexSellCall } from 'hooks/useIndexSellCallback'
-import { INDEX_NFT_ADDRESS, INDEX_NFT_BUY_FEE, ZERO_ADDRESS } from '../../constants'
+import { INDEX_NFT_ADDRESS, INDEX_NFT_BUY_FEE } from '../../constants'
 import SettingsTab from 'components/Settings'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import TransactionsTable from './TransactionsTable'
@@ -266,16 +266,8 @@ export default function CardDetail({
     setTransactionModalOpen(false)
   }
 
-  // const { loading: NFTIndexLoading, data: NFTIndexInfo } = useNFTIndexInfo(nftid)
-  const NFTIndexLoading = false,
-    NFTIndexInfo = {
-      name: '111',
-      description: '111',
-      color: CardColor.BLUE,
-      assetsParameters: [{ currency: ZERO_ADDRESS, amount: '1', amountRaw: '1' }],
-      creator: '111',
-      creatorId: '111'
-    }
+  const { loading: NFTIndexLoading, data: NFTIndexInfo } = useNFTIndexInfo(nftid)
+
   const creatorInfo = useNFTCreatorInfo(NFTIndexInfo?.creator)
   const NFTTransactionRecords = useNFTTransactionRecords(nftid)
 
@@ -294,8 +286,6 @@ export default function CardDetail({
   }, [eths])
 
   const thisNFTethAmount = CurrencyAmount.ether(JSBI.BigInt(price ?? '0'))
-  // console.log('priceState', priceState)
-  // console.log('price', thisNHTethAmount.raw.toString())
 
   const [currentSubTab, setCurrentSubTab] = useState<SubTabType>(SubTabType.Creater)
   const [currentTab, setCurrentTab] = useState<TabType>(TabType.Information)
